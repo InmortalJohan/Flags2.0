@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 import { Box } from '@mui/material';    
 const CountryCard = ({country}) => {
     return (
-        <Paper component={Link} to={`/country/${country.name.common}`} elevation={3} sx={{ p: 2, textDecoration: 'none' }}>
+        <Paper component={Link} to={`/country/${country.name.common}`} elevation={3} sx={{ textDecoration: 'none', p:2, backgroundColor: 'secondary.main' }}>
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <img src={country.flags.png} alt={country.name.common} style={{ width: '250px', height: '150px', objectFit: 'cover' }} />
+                <img src={country.flags.png} alt={country.name.common} style={{p:0, margin:0, width: '250px', height: '150px', objectFit: 'cover' }} />
                 <Typography variant="h6" component="h2">
                     {country.name.common}
                 </Typography>

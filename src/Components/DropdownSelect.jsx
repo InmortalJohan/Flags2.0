@@ -13,7 +13,7 @@ const DropdownSelect = ({ region, setRegion }) => {
 
   return (
     <div>
-      <FormControl variant="filled" sx={{ m: 1, minWidth: 120 }}>
+      <FormControl variant="filled" sx={{ m: 1, minWidth: 200,backgroundColor: "primary.main",borderRadius: 1,p:0,fontSize:'14px',color:'secondary.main' }}>
         <InputLabel id="selectRegion">Filter by Region</InputLabel>
         <Select
           labelId="selectRegion"

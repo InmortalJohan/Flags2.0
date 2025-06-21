@@ -1,2 +1,2 @@
-- [Github repository](https://ditt-repo-här)
+- [Github repository](https://github.com/InmortalJohan/Flags2.0)
 - [Deployat projekt](https://ditt-projekt-här)
