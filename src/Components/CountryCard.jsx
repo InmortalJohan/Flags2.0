@@ -4,9 +4,8 @@ import { Link } from 'react-router-dom';
 import { Box } from '@mui/material';    
 const CountryCard = ({country}) => {
     return (
-        <Paper component={Link} to={`/country/${country.name.common}`} elevation={3} sx={{ textDecoration: 'none', p:2, backgroundColor: 'secondary.main' }}>
-            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <img src={country.flags.png} alt={country.name.common} style={{p:0, margin:0, width: '250px', height: '150px', objectFit: 'cover' }} />
+        <Paper itemSize={3} component={Link} to={`/country/${country.cca3}`} elevation={3} sx={{ width: '320px', textDecoration: 'none',paddingBottom: '16px', backgroundColor: 'secondary.main',display:' flex' , flexDirection: 'column' , alignItems: 'center' , justifyContent: 'center', gap: '8px', }}>
+                <Box component="img" src={country.flags.png} alt={country.name.common} style={{p:0, margin:0, width: '100%', height: '150px', objectFit: 'cover' }} />
                 <Typography variant="h6" component="h2">
                     {country.name.common}
                 </Typography>
@@ -19,7 +18,6 @@ const CountryCard = ({country}) => {
                 <Typography variant="body1" component="p">
                     Population: {country.population.toLocaleString()} people
                 </Typography>
-            </Box>
         </Paper>
     );
 };

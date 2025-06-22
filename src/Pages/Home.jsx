@@ -38,21 +38,19 @@ export default function SearchCountry() {
 
     return (
         <>
-        <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 2 , marginBottom: 2}}>
+        <Box sx={{ display: "flex", flexDirection: "row",wrap:"nowrap", justifyContent: "space-between", alignItems: "center", marginTop: 2 , marginBottom: 6, width: "100%",maxWidth: "1440px"}}>
             <SearchInput query={query} setQuery={setQuery}/>
             <DropdownSelect region={region} setRegion={setRegion}/>
         </Box>
-        <Box>
-            <Grid container spacing={10} sx={{ justifyContent: "center", alignItems: "center", margin: 0 }}>
+            <Grid disableGutters size={12} container spacing={6} sx={{ justifyContent: "center", alignItems: "center",padding: 0, margin: 0, width: "100%", maxWidth: "1440px" }}>
             {filtered.length > 0 ? (
                 filtered.map((country, index) => (
-            <CountryCard key={index} country={country} />
+            <CountryCard itemSize={4} key={index} country={country} />
           ))
         ) : (
           <p>No countries found.</p>
         )}
             </Grid>
-        </Box>
         </>
     )
 }

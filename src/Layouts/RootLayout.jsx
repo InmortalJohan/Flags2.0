@@ -7,7 +7,7 @@ import { ThemeContext } from "../ThemeContext";
 const RootLayout = () => {
   const { mode, toggleTheme } = useContext(ThemeContext);
   return (
-    <Container 
+    <Container disableGutters
       maxWidth="1440px"
       sx={{
         padding: 0,

@@ -8,6 +8,8 @@ import {
 } from "react-router-dom";
 import RootLayout from "./Layouts/RootLayout";
 import Home from "./Pages/Home";
+import CountryLayout from "./Layouts/CountryLayout";
+import Country from "./Pages/Country"
 import { ThemeContext } from "./ThemeContext";
 
 const lightTheme = createTheme({
@@ -30,7 +32,10 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />}>
       <Route index element={<Home />} />
-    </Route>
+     <Route path= "country/:id" elemnt= {<CountryLayout/>}>
+      <Route index element={<Country/>}/>
+     </Route>
+     </Route>
   )
 );
 
