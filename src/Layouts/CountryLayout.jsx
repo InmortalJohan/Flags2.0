@@ -1,18 +1,24 @@
+import { Container } from "@mui/material";
 import { Outlet } from "react-router-dom";
-import Navbar from "../Components/Navbar";
-import { useContext } from "react";
-import { ThemeContext } from "../ThemeContext";
-
-
 
 const CountryLayout = () => {
-    const { mode, toggleTheme } = useContext(ThemeContext);
-    return (
-        <>
-            <Navbar mode={mode} toggleTheme={toggleTheme}/>
-            <Outlet/>
-        </>
-    )
-}
+  return (
+    <Container
+      disableGutters
+      maxWidth="1440px"
+      sx={{
+        padding: 0,
+        margin: 0,
+        display: "flex",
+        flexDirection: "column",
+        minHeight: "100vh",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <Outlet />
+    </Container>
+  );
+};
 
 export default CountryLayout;

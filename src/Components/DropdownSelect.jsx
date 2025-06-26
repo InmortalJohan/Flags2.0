@@ -1,24 +1,31 @@
-import * as React from "react";
+import React, { useContext } from "react";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import { ThemeContext } from "../ThemeContext";
 
 const DropdownSelect = ({ region, setRegion }) => {
-
+  const { mode} = useContext(ThemeContext);
 
   const handleChange = (event) => {
     setRegion(event.target.value);
   };
 
   return (
-    <div>
-      <FormControl variant="filled" sx={{ m: 1, minWidth: 200,backgroundColor: "primary.main",borderRadius: 1,p:0,fontSize:'14px',color:'secondary.main' }}>
+    <>
+      <FormControl mode={mode}  variant="outlined" sx= {(theme) => ({
+        color:
+          mode === "light"
+            ? theme.palette.text.primary
+            : theme.palette.text.primary,
+            m: 1, minWidth: 200,borderRadius: 1,p:0,fontSize:'14px', })}>
         <InputLabel id="selectRegion">Filter by Region</InputLabel>
         <Select
           labelId="selectRegion"
           id="selectRegion"
           value={region}
+          label="Region"
           onChange={handleChange}
         >
           <MenuItem value="">
@@ -31,7 +38,7 @@ const DropdownSelect = ({ region, setRegion }) => {
           <MenuItem value="Oceania">Oceania</MenuItem>
         </Select>
       </FormControl>
-    </div>
+    </>
   );
 };
 
