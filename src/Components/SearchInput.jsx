@@ -6,6 +6,7 @@ const SearchInput = ({ query, setQuery }) => {
    const { mode} = useContext(ThemeContext);
    return (
     <TextField
+      placeholder="Search for a country"
       variant="outlined"
       id="outlined-search"
       label="Search for a country"

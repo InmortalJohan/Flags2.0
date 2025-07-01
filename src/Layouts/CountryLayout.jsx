@@ -9,11 +9,11 @@ const CountryLayout = () => {
       sx={{
         padding: 0,
         margin: 0,
-        display: "flex",
-        flexDirection: "column",
-        minHeight: "100vh",
-        justifyContent: "center",
-        alignItems: "center",
+        // display: "flex",
+        // flexDirection: "column",
+        // minHeight: "100vh",
+        // justifyContent: "center",
+        // alignItems: "center",
       }}
     >
       <Outlet />

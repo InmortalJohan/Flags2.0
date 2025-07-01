@@ -5,26 +5,27 @@ import { useContext } from "react";
 import { ThemeContext } from "../ThemeContext";
 
 const RootLayout = () => {
-  const { mode, toggleTheme} = useContext(ThemeContext);
+  const { mode, toggleTheme } = useContext(ThemeContext);
   return (
-    <Container disableGutters
-      maxWidth="1440px"
-      sx={{
-        padding: 0,
-        margin: 0,
-        display: "flex",
-        flexDirection: "column",
-        minHeight: "100vh",
-        justifyContent: "center",
-        alignItems: "center",  
-      }}
-    
-    >
+    <Box sx={{display:'flex',alignItems:'center',flexDirection:'column',justifyContent:'center'}}>
       <Navbar mode={mode} toggleTheme={toggleTheme} />
-      <Box mode={mode} toggleTheme={toggleTheme}>
-        <Outlet mode={mode} toggleTheme={toggleTheme} />
-      </Box>
-    </Container>
+      <Container
+        disableGutters
+        maxWidth="1440px"
+        sx={{
+          padding: 0,
+          margin: 0,
+          display: "flex",
+          flexDirection: "column",
+          minHeight: "100vh",
+         
+        }}
+      >
+        <Box mode={mode} toggleTheme={toggleTheme}>
+          <Outlet mode={mode} toggleTheme={toggleTheme} />
+        </Box>
+      </Container>
+    </Box>
   );
 };
 

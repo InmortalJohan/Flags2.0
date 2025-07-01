@@ -7,6 +7,7 @@ import logoLightMode from "../assets/techover-logo-dark.png";
 import DarkModeButton from "./DarkModeButton";
 import { useContext } from "react";
 import { ThemeContext } from "../ThemeContext";
+import { Stack } from "@mui/material";
 
 const moon = (
   <svg
@@ -36,22 +37,28 @@ const moon = (
 const Navbar = () => {
   const { mode, toggleTheme } = useContext(ThemeContext);
   return (
-    <Box sx={{ maxWidth: "1440px", width: "100%" }}>
+    <Box  className="Wrapper" sx={(theme) => ({
+      bgcolor:
+        mode === "light"
+          ? theme.palette.background.paper
+          : theme.palette.background.paper, width:'100%',})}>
       <AppBar
-        position="static"
+        position="sticky"
         elevation={3} 
         sx={{
+          // maxWidth:'1440px',
           width: "100%",
           borderRadius:"8px",
           display: "flex",
           justifyContent: "space-evenly",
           alignItems: "center",
           flexDirection: "row",
-          gap: 54,
+          gap: 24,
           paddingTop: 2,
           paddingBottom: 2,
         }}
       >
+      
         <Typography
           variant="h5"
           component="div"
@@ -73,6 +80,7 @@ const Navbar = () => {
           sx={{ height: "24px" }}
         />
         <DarkModeButton mode={mode} toggleTheme={toggleTheme} text={moon} />
+        
       </AppBar>
     </Box>
   );

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Box, Grid } from "@mui/material";
+import { Box, Grid, Stack } from "@mui/material";
 import SearchInput from "../Components/SearchInput";
 import DropdownSelect from "../Components/DropdownSelect";
 import CountryCard from "../Components/CountryCard";
@@ -34,7 +34,11 @@ export default function SearchCountry() {
   const filtered = search(data);
 
   return (
-    <>
+    <Stack
+    direction='column'
+    spacing={4}
+    sx={{justifyContent:'center',alignItems:'center',marginTop:'16px'}}
+    >
       <Box
         sx={{
           display: "flex",
@@ -46,6 +50,7 @@ export default function SearchCountry() {
           marginBottom: 6,
           width: "100%",
           maxWidth: "1440px",
+          padding: '0 42px'
         }}
       >
         <SearchInput query={query} setQuery={setQuery} />
@@ -67,12 +72,12 @@ export default function SearchCountry() {
       >
         {filtered.length > 0 ? (
           filtered.map((country, index) => (
-            <CountryCard itemsize={3} key={index} country={country} />
+            <CountryCard itemsize={2} key={index} country={country} />
           ))
         ) : (
           <p>No countries found.</p>
         )}
       </Grid>
-    </>
+    </Stack>
   );
 }

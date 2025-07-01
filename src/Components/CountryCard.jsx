@@ -5,12 +5,12 @@ import { Box } from "@mui/material";
 const CountryCard = ({ country }) => {
   return (
     <Paper
-      itemsize={3}
+      itemsize={2}
       component={Link}
       to={`/country/${country.cca3}`}
       elevation={3}
       sx={{
-        width: "320px",
+        width: "300px",
         textDecoration: "none",
         paddingBottom: "16px",
         display: " flex",
@@ -31,7 +31,7 @@ const CountryCard = ({ country }) => {
           width: "100%",
           height: "150px",
           objectFit: "cover",
-          // borderRadius:"12px 12px 0px 0px",
+          borderRadius:"12px 12px 0px 0px",
         }}
       />
       <Typography variant="h6" component="h2">
