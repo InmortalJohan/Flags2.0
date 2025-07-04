@@ -4,6 +4,7 @@ import { Box, List, ListItem, Typography, Button, Stack } from "@mui/material";
 import { useContext } from "react";
 import { ThemeContext } from "../ThemeContext";
 import "../Pages/Country.css";
+import LoadingLayout from "../Layouts/LoadingLayout";
 
 const Country = () => {
   const { id } = useParams(); // id = landets kod, ex: "SWE"
@@ -108,7 +109,7 @@ const Country = () => {
     fetchCountry();
   }, [id]);
 
-  if (loading) return <p>Laddar...</p>;
+  if (loading) return <LoadingLayout type="country" count={1} />;
   if (error) return <p>Fel: {error}</p>;
   if (!country) return <p>Ingen data</p>;
 

@@ -3,18 +3,21 @@ import { Box, Grid, Stack } from "@mui/material";
 import SearchInput from "../Components/SearchInput";
 import DropdownSelect from "../Components/DropdownSelect";
 import CountryCard from "../Components/CountryCard";
+import LoadingLayout from "../Layouts/LoadingLayout";
 
 export default function SearchCountry() {
   const url = "https://restcountries.com/v3.1/all";
   const [data, setData] = useState([]);
   const [query, setQuery] = useState("");
   const [region, setRegion] = useState("");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch(url)
       .then((res) => res.json())
       .then((d) => setData(d))
-      .catch((err) => console.error("Fetch error:", err));
+      .catch((err) => console.error("Fetch error:", err))
+      .finally(() => setLoading(false));
   }, []);
 
   const search_parameters = Object.keys(Object.assign({}, ...data));
@@ -32,6 +35,8 @@ export default function SearchCountry() {
   }
 
   const filtered = search(data);
+
+  if (loading) return <LoadingLayout type="card" count={8} />;
 
   return (
     <Stack
