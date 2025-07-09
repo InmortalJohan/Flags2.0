@@ -18,6 +18,7 @@ const DropdownSelect = ({ region, setRegion }) => {
         mode={mode}
         variant="outlined"
         sx={(theme) => ({
+          backgroundColor: mode === "light" ? theme.palette.background.paper : theme.palette.background.paper,
           color:
             mode === "light"
               ? theme.palette.text.primary
@@ -27,12 +28,19 @@ const DropdownSelect = ({ region, setRegion }) => {
           borderRadius: 1,
           p: 0,
           fontSize: "14px",
-          "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline":
-            {
-              borderColor: "secondary.main",
+          "& .MuiOutlinedInput-root": {
+            "& fieldset": {
+              borderColor: mode === "light" ? theme.palette.grey[600] : theme.palette.grey[600],
             },
+            "&:hover fieldset": {
+              borderColor: mode === "light" ? theme.palette.grey[700] : theme.palette.grey[500],
+            },
+          },
+          "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+            borderColor: mode === "light" ? theme.palette.grey[800] : theme.palette.primary.light,
+          },
           "& .MuiInputLabel-root.Mui-focused": {
-            color: "secondary.main",
+            color: mode === "light" ? theme.palette.grey[800] : theme.palette.primary.light,
           },
         })}
       >

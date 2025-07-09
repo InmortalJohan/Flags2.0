@@ -1,11 +1,12 @@
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
-import { Box } from "@mui/material";
+import { Box,Grid, } from "@mui/material";
 const CountryCard = ({ country }) => {
   return (
-    <Paper
-      itemsize={2}
+    <Grid>
+      <Paper
+      size={{xs:6,lg:3}}
       component={Link}
       to={`/country/${country.cca3}`}
       elevation={3}
@@ -20,7 +21,7 @@ const CountryCard = ({ country }) => {
         gap: "8px",
         borderRadius:"12px 12px 0px 0px,",
       }}
-    >
+      >
       <Box
         component="img"
         src={country.flags.png}
@@ -46,7 +47,8 @@ const CountryCard = ({ country }) => {
       <Typography variant="body1" component="p">
         Population: {country.population.toLocaleString()} people
       </Typography>
-    </Paper>
+      </Paper>
+    </Grid>
   );
 };
 

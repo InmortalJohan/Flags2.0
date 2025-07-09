@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Button } from "@mui/material";
+import { Button, Box } from "@mui/material";
 import { ThemeContext } from "../ThemeContext";
 
 export default function DarkModeButton() {
@@ -67,7 +67,9 @@ export default function DarkModeButton() {
             : theme.palette.text.primary,
       })}
     >
-      {mode === "light" ? "Light Mode" : "Dark Mode"}
+      <Box sx={{ display: { xs: "none", sm: "inline" } }}>
+        {mode === "light" ? "Light Mode" : "Dark Mode"}
+      </Box>
     </Button>
   );
 }

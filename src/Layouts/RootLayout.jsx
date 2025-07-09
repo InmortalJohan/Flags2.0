@@ -11,7 +11,7 @@ const RootLayout = () => {
       <Navbar mode={mode} toggleTheme={toggleTheme} />
       <Container
         disableGutters
-        maxWidth="1440px"
+        maxWidth="lg"
         sx={{
           padding: 0,
           margin: 0,

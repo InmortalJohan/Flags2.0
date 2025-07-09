@@ -1,10 +1,19 @@
 import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Box, List, ListItem, Typography, Button, Stack } from "@mui/material";
+import {
+  Box,
+  List,
+  ListItem,
+  Typography,
+  Button,
+  Stack,
+  Container,
+  Grid,
+} from "@mui/material";
 import { useContext } from "react";
 import { ThemeContext } from "../ThemeContext";
-import "../Pages/Country.css";
 import LoadingLayout from "../Layouts/LoadingLayout";
+import { Grid3x3 } from "@mui/icons-material";
 
 const Country = () => {
   const { id } = useParams(); // id = landets kod, ex: "SWE"
@@ -114,78 +123,110 @@ const Country = () => {
   if (!country) return <p>Ingen data</p>;
 
   return (
-    <Box className="countryWrapper">
-      <Box className="backDiv">
+    <Container
+      className="countryWrapper"
+      maxWidth="lg"
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-evenly",
+      }}
+    >
+      <Box className="backDiv" sx={{ paddingTop: 8 }}>
         <Button
+          sx={{ margin: 0, p: 0 }}
           component={Link}
           to="/"
           variant="text"
           color="palette.contrastText"
         >
           {mode === "light" ? ArrowDark : ArrowLeft}{" "}
-          <Typography sx={{ marginLeft: "16px" }}> Tillbaka </Typography>
+          <Typography sx={{ marginLeft: "16px", fontWeight: "700" }}>
+            {" "}
+            Back{" "}
+          </Typography>
         </Button>
       </Box>
-      <Box className="contentContainer">
-        <Box className="flag" >
-          <Box
-            sx={{
-              boxShadow:6,
-              height: "400px",
-              width: "550px",
-              objectFit: "cover",
-              marginLeft: "80px",
-              borderRadius:'24px',
-            }}
-            component="img"
-            src={country.flags?.svg}
-            alt={country.name?.common}
-          />
-        </Box>
-        <Box className="infoContainer" sx={{ marginRight: "80px" }}>
-          <Box className="countryName">
-            <Typography variant="h4" sx={{ textAlign: "center", marginBottom:'20px'}}>
-              {country.name.common}
-            </Typography>
-          </Box>
-          <Box
+      <Grid
+        container
+        spacing={{ xs: 8, md: 25 }}
+        sx={{
+          display: "flex",
+          flexDirection: { xs: "column", md: "row" },
+          justifyContent: { xs: "center", md: "flex-start" },
+          alignItems: "center",
+          marginTop: "12%",
+        }}
+      >
+        <Grid
+          size={{ xs: 10, md: 6 }}
+          sx={{
+            height: { xs: 200, md: 350 },
+            boxShadow: 6,
+            objectFit: "cover",
+            borderRadius: "12px",
+          }}
+          component="img"
+          src={country.flags?.svg}
+          alt={country.name?.common}
+        />
+        <Grid
+          className="infoContainer"
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+          }}
+        >
+          <Typography variant="h4" marginBottom={4}>
+            {country.name.common}
+          </Typography>
+
+          <Grid
             className="listContainer"
-            // sx={{
-            //   display: "flex",
-            //   justifyContent: "center",
-            //   alignItems: "center",
-            // }}
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              flexDirection: { xs: "column", md: "row" },
+            }}
           >
-            <Box component={List} className="listOne">
+            <Grid
+              size={{ xs: 12, md: 8 }}
+              component={List}
+              className="listOne"
+              fontSize={{ xs: 12, md: 14 }}
+            >
               <ListItem>
                 <Typography variant="body1">
                   {" "}
-                  Region:  {"  "}
-                    {country.region}
-                  </Typography>
-                
-              </ListItem>
-              <ListItem>
-                <Typography variant="body1">
-                  Huvudstad:{country.capital?.[0]}
+                  Region: {"  "}
+                  {country.region}
                 </Typography>
               </ListItem>
               <ListItem>
-                <Typography variant="body1">Befolkning:
-                 {country.population.toLocaleString()}</Typography>
+                <Typography variant="body1">
+                  Capital:{"  "}
+                  {country.capital?.[0]}
+                </Typography>
               </ListItem>
               <ListItem>
-                <Typography>Språk:</Typography>
+                <Typography variant="body1">
+                  Population:{"  "}
+                  {country.population.toLocaleString()}
+                </Typography>
+              </ListItem>
+              <ListItem>
                 <Typography>
-                  {" "}
+                  Languages:{"  "}
                   {Object.values(country.languages || {}).join(", ")}
                 </Typography>
               </ListItem>
-            </Box>
-            <Box component={List} className="listTwo">
+            </Grid>
+            <Grid size={{ xs: 12, md: 8 }} component={List} className="listTwo">
               <ListItem>
-                <Typography variant="body1">Valuta: 
-                
+                <Typography variant="body1">
+                  Currencies:{"  "}
                   {
                     country.currencies?.[Object.keys(country.currencies)[0]]
                       .name
@@ -193,8 +234,8 @@ const Country = () => {
                 </Typography>
               </ListItem>
               <ListItem>
-                <Typography variant="body1">Ursprungligt namn: 
-                
+                <Typography variant="body1">
+                  Native name:{"  "}
                   {
                     country.name.nativeName?.[
                       Object.keys(country.name.nativeName)[0]
@@ -203,40 +244,37 @@ const Country = () => {
                 </Typography>
               </ListItem>
               <ListItem>
-                <Typography variant="body1">Vanligaste domän : 
-                 {country.tld?.[0]} </Typography>
+                <Typography variant="body1">
+                  Top Level Domain :{"  "}
+                  {country.tld?.[0]}{" "}
+                </Typography>
               </ListItem>
-            </Box>
-          </Box>
-        </Box>
-      </Box>
+            </Grid>
+          </Grid>
+        </Grid>
+      </Grid>
       <Box
         sx={{
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
           flexDirection: "column",
-          marginTop:'40px'
+          marginTop: "32px",
         }}
       >
-        <Typography
-          component="h5"
-          variant="h5"
-          sx={{ marginLeft: "80px", marginBottom: "20px" }}
-        >
-          Grannländer:{" "}
+        <Typography component="h5" variant="h5" sx={{ marginBottom: "12px" }}>
+          Border Countries:{" "}
         </Typography>
         <Stack
           direction="row"
-          // spacing={2}
+          spacing={2}
           sx={{
             flexWrap: "wrap",
-            maxWidth: "500px",
             alignItems: "center",
-            justifyContent: "space-evenly",
+            marginBottom: "12px",
             display: "flex",
-            marginLeft: "80px",
-            gap: "8px",
+
+            gap: "4px",
           }}
         >
           {neighbors.length > 0 ? (
@@ -255,11 +293,11 @@ const Country = () => {
               </Button>
             ))
           ) : (
-            <Typography variant="p">Inga grannländer</Typography>
+            <Typography variant="p">No Border Countries</Typography>
           )}
         </Stack>
       </Box>
-    </Box>
+    </Container>
   );
 };
 

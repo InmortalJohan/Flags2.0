@@ -13,12 +13,23 @@ import CountryLayout from "./Layouts/CountryLayout";
 import Country from "./Pages/Country";
 import { ThemeContext } from "./ThemeContext";
 import './App.css'
+import TestRoute from "./Pages/TestRoute"
 
 const lightTheme = createTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 700,
+      md: 900,
+      lg: 1440,
+      xl: 1536,
+    },
+  },
   palette: {
     mode: "light",
     primary: {
       main: "#f2f2f2",
+      contrastText:"202C36"
     },
     secondary: {
       main: "#f2f2f2",
@@ -35,9 +46,22 @@ const lightTheme = createTheme({
       contrastText:"202C36"
     }
   },
+  typography:{
+    fontFamily:"Open-Sans",
+    fontWeightRegular:"300"
+  }
 });
 
 const darkTheme = createTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 700,
+      md: 900,
+      lg: 1440,
+      xl: 1536,
+    },
+  },
   palette: {
     mode: "dark",
     primary: {
@@ -55,12 +79,17 @@ const darkTheme = createTheme({
       paper: "#2b3844",
     },
   },
+  typography:{
+    fontFamily:"Open-Sans",
+    fontWeightRegular:"300"
+  }
 });
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />}>
       <Route index element={<Home />} />
+      <Route path="test" element={<TestRoute />} />
       <Route path="country/:id" element={<CountryLayout />}>
         <Route index element={<Country />} />
       </Route>

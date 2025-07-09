@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Box, Grid, Stack } from "@mui/material";
+import { Box, Grid, Stack,Container } from "@mui/material";
 import SearchInput from "../Components/SearchInput";
 import DropdownSelect from "../Components/DropdownSelect";
 import CountryCard from "../Components/CountryCard";
@@ -40,44 +40,33 @@ export default function SearchCountry() {
 
   return (
     <Stack
-    direction='column'
-    spacing={4}
-    sx={{justifyContent:'center',alignItems:'center',marginTop:'16px'}}
+      direction="column"
+      spacing={4}
+      sx={{ justifyContent: "center", alignItems: "center", marginTop: "16px" }}
     >
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "row",
-          wrap: "nowrap",
-          justifyContent: "space-between",
-          alignItems: "center",
-          marginTop: 2,
-          marginBottom: 6,
-          width: "100%",
-          maxWidth: "1440px",
-          padding: '0 42px'
-        }}
+      <Container maxWidth="lg" spacing={6}
+        sx={{display:"flex", justifyContent:"space-between",alignItems:"center", flexDirection:{xs:"column", sm:"row"}}}
       >
         <SearchInput query={query} setQuery={setQuery} />
         <DropdownSelect region={region} setRegion={setRegion} />
-      </Box>
+      </Container>
       <Grid
-        disableGutters
-        size={10}
+        maxWidth="lg"
+        
+        size={12}
         container
-        spacing={6}
+        spacing={8}
         sx={{
           justifyContent: "center",
           alignItems: "center",
           padding: 0,
           margin: 0,
           width: "100%",
-          maxWidth: "1440px",
         }}
       >
         {filtered.length > 0 ? (
           filtered.map((country, index) => (
-            <CountryCard itemsize={2} key={index} country={country} />
+            <CountryCard size={3} key={index} country={country} />
           ))
         ) : (
           <p>No countries found.</p>

@@ -7,7 +7,7 @@ import logoLightMode from "../assets/techover-logo-dark.png";
 import DarkModeButton from "./DarkModeButton";
 import { useContext } from "react";
 import { ThemeContext } from "../ThemeContext";
-import { Stack } from "@mui/material";
+import { Container } from "@mui/material";
 
 const moon = (
   <svg
@@ -41,34 +41,34 @@ const Navbar = () => {
       bgcolor:
         mode === "light"
           ? theme.palette.background.paper
-          : theme.palette.background.paper, width:'100%',})}>
+          : theme.palette.background.paper,width:"100%",margin:'0'})}>
       <AppBar
         position="sticky"
         elevation={3} 
-        sx={{
-          // maxWidth:'1440px',
+        
+      >
+      <Container  maxWidth="lg"sx={{
           width: "100%",
           borderRadius:"8px",
           display: "flex",
-          justifyContent: "space-evenly",
+          justifyContent: "space-between",
           alignItems: "center",
           flexDirection: "row",
-          gap: 24,
+          // gap: 24,
           paddingTop: 2,
           paddingBottom: 2,
-        }}
-      >
-      
+          // paddingLeft: 6,
+          // paddingRight: 6,
+        }}>
         <Typography
           variant="h5"
           component="div"
           sx={{
             left: 8,
             flexGrow: 1,
-
+            display:"contents",
             fontWeight: "bold",
             paddingLeft: 3,
-            display: "contents",
           }}
         >
           Flags-App
@@ -77,10 +77,10 @@ const Navbar = () => {
           component="img"
           src={mode === "light" ? logoLightMode : logoDarkMode}
           alt="tech-logo"
-          sx={{ height: "24px" }}
+          sx={{ height: "24px", display:{xs:'none',md:'block'} }}
         />
         <DarkModeButton mode={mode} toggleTheme={toggleTheme} text={moon} />
-        
+        </Container>
       </AppBar>
     </Box>
   );

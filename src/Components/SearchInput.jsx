@@ -14,12 +14,29 @@ const SearchInput = ({ query, setQuery }) => {
       value={query}
       onChange={(e) => setQuery(e.target.value)}
       sx={
-        (theme) => ({color: mode === "light" ? theme.palette.text.primary : theme.palette.text.primary, 
-           minWidth: 400,
-           p: 0,
-           fontSize: "14px",
-           borderRadius: "12px",
-      })}
+        (theme) => ({
+          backgroundColor: mode === "light" ? theme.palette.background.paper : theme.palette.background.paper,
+          color: mode === "light" ? theme.palette.text.primary : theme.palette.text.primary, 
+          minWidth: {xs:200,sm:400},
+          p: 0,
+          fontSize: "14px",
+          borderRadius: "12px",
+          "& .MuiOutlinedInput-root": {
+            "& fieldset": {
+              borderColor: mode === "light" ? theme.palette.grey[600] : theme.palette.grey[600],
+            },
+            "&:hover fieldset": {
+              borderColor: mode === "light" ? theme.palette.grey[700] : theme.palette.grey[500],
+            },
+          },
+          "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+            borderColor: mode === "light" ? theme.palette.grey[800] : theme.palette.primary.light,
+          },
+          "& .MuiInputLabel-root.Mui-focused": {
+            color: mode === "light" ? theme.palette.grey[800] : theme.palette.primary.light,
+          },
+        })
+      }
     />
   );
 };
