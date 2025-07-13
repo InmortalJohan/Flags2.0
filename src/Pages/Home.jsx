@@ -11,16 +11,26 @@ export default function SearchCountry() {
   const [query, setQuery] = useState("");
   const [region, setRegion] = useState("");
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     fetch(url)
-      .then((res) => res.json())
-      .then((d) => setData(d))
-      .catch((err) => console.error("Fetch error:", err))
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to fetch countries");
+        return res.json();
+      })
+      .then((d) => {
+        setData(Array.isArray(d) ? d : []);
+        setError(null);
+      })
+      .catch((err) => {
+        setError(err.message);
+        setData([]);
+      })
       .finally(() => setLoading(false));
   }, []);
 
-  const search_parameters = Object.keys(Object.assign({}, ...data));
+  const search_parameters = Array.isArray(data) && data.length > 0 ? Object.keys(Object.assign({}, ...data)) : [];
 
   function search(data) {
     return data.filter((item) => {
@@ -37,6 +47,7 @@ export default function SearchCountry() {
   const filtered = search(data);
 
   if (loading) return <LoadingLayout type="card" count={8} />;
+  if (error) return <p style={{color: 'red'}}>Error: {error}</p>;
 
   return (
     <Stack

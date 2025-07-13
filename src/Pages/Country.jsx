@@ -89,27 +89,31 @@ const Country = () => {
       setError(null);
 
       try {
-        // Hämta landet med alpha-kod
+        // Always use the full API URL
         const res = await fetch(`https://restcountries.com/v3.1/alpha/${id}`);
         if (!res.ok) throw new Error("Landet kunde inte hämtas");
         const data = await res.json();
         const countryData = Array.isArray(data) ? data[0] : data;
         setCountry(countryData);
 
-        // Hämta grannländer med deras namn
-        if (countryData.borders && countryData.borders.length > 0) {
+        // Defensive: Only fetch borders if it's a non-empty array
+        if (Array.isArray(countryData.borders) && countryData.borders.length > 0) {
           const bordersRes = await fetch(
-            `https://restcountries.com/v3.1/alpha?codes=${countryData.borders.join(
-              ","
-            )}`
+            `https://restcountries.com/v3.1/alpha?codes=${countryData.borders.join(",")}`
           );
-          const bordersData = await bordersRes.json();
-          setNeighbors(bordersData);
+          if (!bordersRes.ok) {
+            setNeighbors([]);
+          } else {
+            const bordersData = await bordersRes.json();
+            setNeighbors(Array.isArray(bordersData) ? bordersData : []);
+          }
         } else {
           setNeighbors([]);
         }
       } catch (err) {
         setError(err.message);
+        setCountry(null);
+        setNeighbors([]);
       } finally {
         setLoading(false);
       }
