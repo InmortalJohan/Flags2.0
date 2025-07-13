@@ -67,11 +67,12 @@ const Navbar = () => {
             left: 8,
             flexGrow: 1,
             display:"contents",
-            fontWeight: "bold",
+            fontFamily:"open sans",
+            fontWeight: "600",
             paddingLeft: 3,
           }}
         >
-          Flags-App
+          The Flag App
         </Typography>
         <Box
           component="img"

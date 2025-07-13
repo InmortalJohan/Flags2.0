@@ -13,7 +13,7 @@ import {
 import { useContext } from "react";
 import { ThemeContext } from "../ThemeContext";
 import LoadingLayout from "../Layouts/LoadingLayout";
-import { Grid3x3 } from "@mui/icons-material";
+import NotFound from "./NotFound";
 
 const Country = () => {
   const { id } = useParams(); // id = landets kod, ex: "SWE"
@@ -119,8 +119,8 @@ const Country = () => {
   }, [id]);
 
   if (loading) return <LoadingLayout type="country" count={1} />;
-  if (error) return <p>Fel: {error}</p>;
-  if (!country) return <p>Ingen data</p>;
+  if (error) return <NotFound />;
+  if (!country) return <NotFound />;
 
   return (
     <Container
@@ -198,20 +198,20 @@ const Country = () => {
               fontSize={{ xs: 12, md: 14 }}
             >
               <ListItem>
-                <Typography variant="body1">
+                <Typography variant="body2">
                   {" "}
                   Region: {"  "}
                   {country.region}
                 </Typography>
               </ListItem>
               <ListItem>
-                <Typography variant="body1">
+                <Typography variant="body2">
                   Capital:{"  "}
                   {country.capital?.[0]}
                 </Typography>
               </ListItem>
               <ListItem>
-                <Typography variant="body1">
+                <Typography variant="body2">
                   Population:{"  "}
                   {country.population.toLocaleString()}
                 </Typography>
@@ -225,7 +225,7 @@ const Country = () => {
             </Grid>
             <Grid size={{ xs: 12, md: 8 }} component={List} className="listTwo">
               <ListItem>
-                <Typography variant="body1">
+                <Typography variant="body2">
                   Currencies:{"  "}
                   {
                     country.currencies?.[Object.keys(country.currencies)[0]]
@@ -234,7 +234,7 @@ const Country = () => {
                 </Typography>
               </ListItem>
               <ListItem>
-                <Typography variant="body1">
+                <Typography variant="body2">
                   Native name:{"  "}
                   {
                     country.name.nativeName?.[
@@ -244,7 +244,7 @@ const Country = () => {
                 </Typography>
               </ListItem>
               <ListItem>
-                <Typography variant="body1">
+                <Typography variant="body2">
                   Top Level Domain :{"  "}
                   {country.tld?.[0]}{" "}
                 </Typography>

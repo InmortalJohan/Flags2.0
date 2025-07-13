@@ -8,9 +8,10 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import RootLayout from "./Layouts/RootLayout";
-import Home from "./Pages/Home";
 import CountryLayout from "./Layouts/CountryLayout";
+import Home from "./Pages/Home";
 import Country from "./Pages/Country";
+import NotFound from "./Pages/NotFound";
 import { ThemeContext } from "./ThemeContext";
 import './App.css'
 import TestRoute from "./Pages/TestRoute"
@@ -46,10 +47,20 @@ const lightTheme = createTheme({
       contrastText:"202C36"
     }
   },
-  typography:{
-    fontFamily:"Open-Sans",
-    fontWeightRegular:"300"
-  }
+  typography: {
+    body1: {
+      fontSize: 14,
+      fontFamily: 'Open Sans',
+    },
+    button: {
+      fontFamily: 'Open Sans',
+    },
+    body2: {
+      fontSize: 16,
+      fontFamily: 'Open Sans',
+    },
+    fontFamily: 'Open Sans',
+  },
 });
 
 const darkTheme = createTheme({
@@ -79,20 +90,31 @@ const darkTheme = createTheme({
       paper: "#2b3844",
     },
   },
-  typography:{
-    fontFamily:"Open-Sans",
-    fontWeightRegular:"300"
-  }
+  typography: {
+    body1: {
+      fontSize: 14,
+      fontFamily: 'Open Sans',
+    },
+    button: {
+      fontFamily: 'Open Sans',
+    },
+    body2: {
+      fontSize: 16,
+      fontFamily: 'Open Sans',
+    },
+    fontFamily: 'Open Sans',
+  },
 });
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />}>
       <Route index element={<Home />} />
-      <Route path="test" element={<TestRoute />} />
+      {/* <Route path="test" element={<TestRoute />} /> */}
       <Route path="country/:id" element={<CountryLayout />}>
         <Route index element={<Country />} />
       </Route>
+      <Route path="*" element={<NotFound/>} />
     </Route>
   )
 );

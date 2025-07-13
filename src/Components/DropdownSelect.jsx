@@ -23,7 +23,7 @@ const DropdownSelect = ({ region, setRegion }) => {
             mode === "light"
               ? theme.palette.text.primary
               : theme.palette.text.primary,
-          m: 1,
+          
           minWidth: 200,
           borderRadius: 1,
           p: 0,

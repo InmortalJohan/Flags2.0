@@ -44,8 +44,8 @@ export default function SearchCountry() {
       spacing={4}
       sx={{ justifyContent: "center", alignItems: "center", marginTop: "16px" }}
     >
-      <Container maxWidth="lg" spacing={6}
-        sx={{display:"flex", justifyContent:"space-between",alignItems:"center", flexDirection:{xs:"column", sm:"row"}}}
+      <Container maxWidth="lg" 
+        sx={{display:"flex", justifyContent:"space-between",alignItems:"center", flexDirection:{xs:"column", sm:"row"},p:0}}
       >
         <SearchInput query={query} setQuery={setQuery} />
         <DropdownSelect region={region} setRegion={setRegion} />

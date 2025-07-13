@@ -19,7 +19,7 @@ const CountryCard = ({ country }) => {
         alignItems: "center",
         justifyContent: "center",
         gap: "8px",
-        borderRadius:"12px 12px 0px 0px,",
+        
       }}
       >
       <Box
@@ -35,10 +35,10 @@ const CountryCard = ({ country }) => {
           borderRadius:"12px 12px 0px 0px",
         }}
       />
-      <Typography variant="h6" component="h2">
+      <Typography variant="h6" component="h2" fontFamily="Open sans">
         {country.name.common}
       </Typography>
-      <Typography variant="body1" component="p">
+      <Typography variant="body1" component="p" >
         Region: {country.region}
       </Typography>
       <Typography variant="body1" component="p">
