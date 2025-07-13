@@ -114,7 +114,7 @@ const Country = () => {
         setError(err.message);
         setCountry(null);
         setNeighbors([]);
-      } finally {
+     } finally {
         setLoading(false);
       }
     };
@@ -153,13 +153,13 @@ const Country = () => {
       </Box>
       <Grid
         container
-        spacing={{ xs: 8, md: 25 }}
+        spacing={{ xs: 8, md: 16 }}
         sx={{
           display: "flex",
           flexDirection: { xs: "column", md: "row" },
           justifyContent: { xs: "center", md: "flex-start" },
           alignItems: "center",
-          marginTop: "12%",
+          marginTop: "40px"
         }}
       >
         <Grid
@@ -176,13 +176,14 @@ const Country = () => {
         />
         <Grid
           className="infoContainer"
+          size={{xs:10, md:6}}
           sx={{
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
           }}
         >
-          <Typography variant="h4" marginBottom={4}>
+          <Typography variant="h4" marginBottom={4} paddingLeft="12px" >
             {country.name.common}
           </Typography>
 
