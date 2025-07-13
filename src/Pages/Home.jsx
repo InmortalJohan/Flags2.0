@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
-import { Box, Grid, Stack,Container } from "@mui/material";
+import { Box, Grid, Stack, Container } from "@mui/material";
 import SearchInput from "../Components/SearchInput";
 import DropdownSelect from "../Components/DropdownSelect";
 import CountryCard from "../Components/CountryCard";
 import LoadingLayout from "../Layouts/LoadingLayout";
 
 export default function SearchCountry() {
-  const url = "https://restcountries.com/v3.1/all";
+  const url =
+    "https://restcountries.com/v3.1/all?fields=name,cca3,flags,region,capital,population,languages,currencies,tld";
   const [data, setData] = useState([]);
   const [query, setQuery] = useState("");
   const [region, setRegion] = useState("");
@@ -30,7 +31,10 @@ export default function SearchCountry() {
       .finally(() => setLoading(false));
   }, []);
 
-  const search_parameters = Array.isArray(data) && data.length > 0 ? Object.keys(Object.assign({}, ...data)) : [];
+  const search_parameters =
+    Array.isArray(data) && data.length > 0
+      ? Object.keys(Object.assign({}, ...data))
+      : [];
 
   function search(data) {
     return data.filter((item) => {
@@ -47,7 +51,7 @@ export default function SearchCountry() {
   const filtered = search(data);
 
   if (loading) return <LoadingLayout type="card" count={8} />;
-  if (error) return <p style={{color: 'red'}}>Error: {error}</p>;
+  if (error) return <p style={{ color: "red" }}>Error: {error}</p>;
 
   return (
     <Stack
@@ -55,15 +59,21 @@ export default function SearchCountry() {
       spacing={4}
       sx={{ justifyContent: "center", alignItems: "center", marginTop: "16px" }}
     >
-      <Container maxWidth="lg" 
-        sx={{display:"flex", justifyContent:"space-between",alignItems:"center", flexDirection:{xs:"column", sm:"row"},p:0}}
+      <Container
+        maxWidth="lg"
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          flexDirection: { xs: "column", sm: "row" },
+          p: 0,
+        }}
       >
         <SearchInput query={query} setQuery={setQuery} />
         <DropdownSelect region={region} setRegion={setRegion} />
       </Container>
       <Grid
         maxWidth="lg"
-        
         size={12}
         container
         spacing={8}
