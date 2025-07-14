@@ -16,9 +16,11 @@ const CountryCard = ({ country }) => {
         paddingBottom: "16px",
         display: " flex",
         flexDirection: "column",
-        alignItems: "center",
+        alignItems: "flex-start",
         justifyContent: "center",
         gap: "8px",
+        borderRadius:"12px 12px 0px 0px",
+        textAlign:"left",
         
       }}
       >
@@ -35,16 +37,16 @@ const CountryCard = ({ country }) => {
           borderRadius:"12px 12px 0px 0px",
         }}
       />
-      <Typography variant="h6" component="h2" fontFamily="Open sans">
+      <Typography paddingLeft={1} variant="h6" component="h2" fontFamily="Open sans">
         {country.name.common}
       </Typography>
-      <Typography variant="body1" component="p" >
+      <Typography paddingLeft={1} variant="body1" component="p" >
         Region: {country.region}
       </Typography>
-      <Typography variant="body1" component="p">
+      <Typography paddingLeft={1} variant="body1" component="p">
         Capital: {country.capital}
       </Typography>
-      <Typography variant="body1" component="p">
+      <Typography paddingLeft={1} variant="body1" component="p">
         Population: {country.population.toLocaleString()} people
       </Typography>
       </Paper>

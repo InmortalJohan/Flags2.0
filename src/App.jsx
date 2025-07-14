@@ -103,6 +103,7 @@ const darkTheme = createTheme({
       fontFamily: 'Open Sans',
     },
     fontFamily: 'Open Sans',
+    marginLeft:"4px"
   },
 });
 

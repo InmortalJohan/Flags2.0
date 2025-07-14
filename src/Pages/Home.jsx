@@ -63,10 +63,11 @@ export default function SearchCountry() {
         maxWidth="lg"
         sx={{
           display: "flex",
-          justifyContent: "space-between",
+          justifyContent:"space-between",
           alignItems: "center",
           flexDirection: { xs: "column", sm: "row" },
           p: 0,
+          gap:"12px" 
         }}
       >
         <SearchInput query={query} setQuery={setQuery} />
@@ -76,13 +77,13 @@ export default function SearchCountry() {
         maxWidth="lg"
         size={12}
         container
-        spacing={8}
+        spacing={4}
         sx={{
-          justifyContent: "center",
+          justifyContent: "space-between",
           alignItems: "center",
-          padding: 0,
+          paddingLeft:3,
+          paddingRight:3,
           margin: 0,
-          width: "100%",
         }}
       >
         {filtered.length > 0 ? (
