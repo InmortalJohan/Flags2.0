@@ -14,6 +14,7 @@ import { useContext } from "react";
 import { ThemeContext } from "../ThemeContext";
 import LoadingLayout from "../Layouts/LoadingLayout";
 import NotFound from "./NotFound";
+import CountryDetailSkeleton from "../Components/CountryDetailSkeleton";
 
 const Country = () => {
   const { id } = useParams(); // id = landets kod, ex: "SWE"
@@ -122,7 +123,7 @@ const Country = () => {
     fetchCountry();
   }, [id]);
 
-  if (loading) return <LoadingLayout type="country" count={1} />;
+  if (loading) return <CountryDetailSkeleton />;
   if (error) return <NotFound />;
   if (!country) return <NotFound />;
 

@@ -40,44 +40,49 @@ function CardSkeleton() {
   return (
     <div
       style={{
-        width: 300,
-        borderRadius: "12px",
-        boxShadow: "0 2px 8px rgba(0,0,0,0.05)",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
+        width: '100%',
+        maxWidth: 300,
+        borderRadius: '12px',
+        boxShadow: '0 2px 8px rgba(0,0,0,0.05)',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'flex-start',
         paddingBottom: 16,
         margin: 8,
-        background: "#fff",
+        background: '#fff',
       }}
     >
       {/* Flag */}
       <div
         className="skeleton"
         style={{
-          width: "100%",
+          width: '100%',
           height: 150,
-          borderRadius: "12px 12px 0 0",
+          borderRadius: '12px 12px 0 0',
           marginBottom: 16,
         }}
       />
-      {/* Title */}
+      {/* Country Name */}
       <div
         className="skeleton"
-        style={{ width: "70%", height: 28, marginBottom: 12 }}
+        style={{ width: '70%', height: 28, marginBottom: 12, marginLeft: 8 }}
       />
       {/* Region */}
-      <div
-        className="skeleton"
-        style={{ width: "60%", height: 18, marginBottom: 8 }}
-      />
+      <div style={{ display: 'flex', alignItems: 'center', width: '90%', marginBottom: 8, marginLeft: 8 }}>
+        <span style={{ fontWeight: 500, marginRight: 6 }}>Region:</span>
+        <div className="skeleton" style={{ width: 80, height: 18 }} />
+      </div>
       {/* Capital */}
-      <div
-        className="skeleton"
-        style={{ width: "50%", height: 18, marginBottom: 8 }}
-      />
+      <div style={{ display: 'flex', alignItems: 'center', width: '90%', marginBottom: 8, marginLeft: 8 }}>
+        <span style={{ fontWeight: 500, marginRight: 6 }}>Capital:</span>
+        <div className="skeleton" style={{ width: 80, height: 18 }} />
+      </div>
       {/* Population */}
-      <div className="skeleton" style={{ width: "65%", height: 18 }} />
+      <div style={{ display: 'flex', alignItems: 'center', width: '90%', marginLeft: 8 }}>
+        <span style={{ fontWeight: 500, marginRight: 6 }}>Population:</span>
+        <div className="skeleton" style={{ width: 100, height: 18 }} />
+        <span style={{ marginLeft: 4 }}>people</span>
+      </div>
     </div>
   );
 }
@@ -86,66 +91,100 @@ function CountryDetailSkeleton() {
   return (
     <div
       style={{
-        display: "flex",
-        flexDirection: "row",
-        gap: 48,
-        padding: 32,
-        alignItems: "flex-start",
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 32,
+        padding: 16,
+        alignItems: 'center',
+        width: '100%',
+        maxWidth: 1200,
+        margin: '0 auto',
       }}
     >
-      {/* Flag */}
+      {/* Back Button */}
+      <div style={{ alignSelf: 'flex-start', marginBottom: 8 }}>
+        <div className="skeleton" style={{ width: 80, height: 32, borderRadius: 8 }} />
+      </div>
       <div
-        className="skeleton"
         style={{
-          width: 550,
-          height: 400,
-          borderRadius: 24,
-          marginLeft: 80,
-          marginRight: 32,
+          display: 'flex',
+          flexDirection: 'column',
+          width: '100%',
+          gap: 32,
         }}
-      />
-      {/* Info */}
-      <div style={{ flex: 1, marginRight: 80 }}>
-        {/* Country Name */}
+      >
+        {/* Flag and Info */}
         <div
-          className="skeleton"
           style={{
-            width: "60%",
-            height: 40,
-            margin: "0 auto 24px auto",
-            borderRadius: 8,
+            display: 'flex',
+            flexDirection: 'row',
+            gap: 32,
+            flexWrap: 'wrap',
+            width: '100%',
+            justifyContent: 'center',
           }}
-        />
-        <div style={{ display: "flex", flexDirection: "row", gap: 32 }}>
-          {/* List One */}
-          <div style={{ flex: 1 }}>
-            <div
-              className="skeleton"
-              style={{ width: "80%", height: 22, marginBottom: 16 }}
-            />
-            <div
-              className="skeleton"
-              style={{ width: "70%", height: 22, marginBottom: 16 }}
-            />
-            <div
-              className="skeleton"
-              style={{ width: "60%", height: 22, marginBottom: 16 }}
-            />
-            <div
-              className="skeleton"
-              style={{ width: "90%", height: 22, marginBottom: 16 }}
-            />
+        >
+          {/* Flag */}
+          <div
+            className="skeleton"
+            style={{
+              width: 320,
+              maxWidth: '90vw',
+              height: 200,
+              borderRadius: 16,
+              marginBottom: 16,
+              flexShrink: 0,
+            }}
+          />
+          {/* Info */}
+          <div style={{ flex: 1, minWidth: 260, maxWidth: 500 }}>
+            {/* Country Name */}
+            <div className="skeleton" style={{ width: '60%', height: 40, marginBottom: 24, borderRadius: 8 }} />
+            <div style={{ display: 'flex', flexDirection: 'row', gap: 32, flexWrap: 'wrap' }}>
+              {/* List One */}
+              <div style={{ flex: 1, minWidth: 120 }}>
+                <div style={{ display: 'flex', alignItems: 'center', marginBottom: 12 }}>
+                  <span style={{ fontWeight: 500, marginRight: 6 }}>Region:</span>
+                  <div className="skeleton" style={{ width: 80, height: 18 }} />
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', marginBottom: 12 }}>
+                  <span style={{ fontWeight: 500, marginRight: 6 }}>Capital:</span>
+                  <div className="skeleton" style={{ width: 80, height: 18 }} />
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', marginBottom: 12 }}>
+                  <span style={{ fontWeight: 500, marginRight: 6 }}>Population:</span>
+                  <div className="skeleton" style={{ width: 100, height: 18 }} />
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', marginBottom: 12 }}>
+                  <span style={{ fontWeight: 500, marginRight: 6 }}>Languages:</span>
+                  <div className="skeleton" style={{ width: 120, height: 18 }} />
+                </div>
+              </div>
+              {/* List Two */}
+              <div style={{ flex: 1, minWidth: 120 }}>
+                <div style={{ display: 'flex', alignItems: 'center', marginBottom: 12 }}>
+                  <span style={{ fontWeight: 500, marginRight: 6 }}>Currencies:</span>
+                  <div className="skeleton" style={{ width: 80, height: 18 }} />
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', marginBottom: 12 }}>
+                  <span style={{ fontWeight: 500, marginRight: 6 }}>Native name:</span>
+                  <div className="skeleton" style={{ width: 100, height: 18 }} />
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', marginBottom: 12 }}>
+                  <span style={{ fontWeight: 500, marginRight: 6 }}>Top Level Domain:</span>
+                  <div className="skeleton" style={{ width: 60, height: 18 }} />
+                </div>
+              </div>
+            </div>
           </div>
-          {/* List Two */}
-          <div style={{ flex: 1 }}>
-            <div
-              className="skeleton"
-              style={{ width: "80%", height: 22, marginBottom: 16 }}
-            />
-            <div
-              className="skeleton"
-              style={{ width: "70%", height: 22, marginBottom: 16 }}
-            />
+        </div>
+        {/* Border Countries */}
+        <div style={{ marginTop: 24, width: '100%' }}>
+          <span style={{ fontWeight: 600, fontSize: 20, marginRight: 12 }}>Border Countries:</span>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginTop: 8 }}>
+            {[1,2,3].map((i) => (
+              <div key={i} className="skeleton" style={{ width: 80, height: 32, borderRadius: 8 }} />
+            ))}
           </div>
         </div>
       </div>
