@@ -109,7 +109,7 @@ export default function SearchCountry() {
     <Stack
       direction="column"
       spacing={4}
-      sx={{ justifyContent: "center", alignItems: "center", marginTop: "16px" }}
+      sx={{ justifyContent: "center", alignItems: "stretch", marginTop: "16px" }}
     >
       <Container
         maxWidth="lg"
@@ -126,21 +126,21 @@ export default function SearchCountry() {
         <DropdownSelect region={region} setRegion={setRegion} />
       </Container>
       <Grid
-        maxWidth="lg"
-        size={12}
         container
-        spacing={4}
+        spacing={8}
         sx={{
-          justifyContent: "space-between",
+          justifyContent:"flex-start",
           alignItems: "center",
-          paddingLeft:3,
-          paddingRight:3,
+          paddingLeft: 3,
+          paddingRight: 3,
           margin: 0,
         }}
       >
         {filtered.length > 0 ? (
           filtered.map((country, index) => (
-            <CountryCard size={3} key={index} country={country} />
+            <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
+              <CountryCard country={country} />
+            </Grid>
           ))
         ) : (
           <p>No countries found.</p>
