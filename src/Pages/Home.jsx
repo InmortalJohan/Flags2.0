@@ -3,8 +3,7 @@ import { Box, Grid, Stack, Container } from "@mui/material";
 import SearchInput from "../Components/SearchInput";
 import DropdownSelect from "../Components/DropdownSelect";
 import CountryCard from "../Components/CountryCard";
-import LoadingLayout from "../Layouts/LoadingLayout";
-import CountryCardSkeleton from "../Components/CountryCardSkeleton";
+
 
 export default function SearchCountry() {
   const url =
@@ -96,7 +95,7 @@ export default function SearchCountry() {
         >
           {Array.from({ length: 16 }).map((_, i) => (
             <Grid item xs={12} sm={6} md={4} lg={3} key={i}>
-              <CountryCardSkeleton />
+              <CountryCard isLoading={true} />
             </Grid>
           ))}
         </Grid>

@@ -68,7 +68,7 @@ const darkTheme = createTheme({
     values: {
       xs: 0,
       sm: 500,
-      md: 1000,
+      md: 900,
       lg: 1440,
       xl: 1536,
     },
@@ -111,7 +111,7 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />}>
       <Route index element={<Home />} />
-      {/* <Route path="test" element={<TestRoute />} /> */}
+      <Route path="test" element={<TestRoute />} />
       <Route path="country/:id" element={<CountryLayout />}>
         <Route index element={<Country />} />
       </Route>

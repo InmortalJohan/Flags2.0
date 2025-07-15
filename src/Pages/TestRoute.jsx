@@ -1,5 +1,7 @@
-import { Box, Container, Grid,Paper } from "@mui/material";
+import { Box, Button, Container, Grid,Paper } from "@mui/material";
 import { styled } from '@mui/material/styles';
+import { useState } from "react";
+import BasicCard from "../Components/BasicCard";
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: "#fff",
@@ -12,24 +14,19 @@ const Item = styled(Paper)(({ theme }) => ({
     }),
   }));
 const TestRoute = () => {
+  const [isLoading, setIsLoading]=useState(true)
   return (
     <>
       <Container maxWidth="sm">TestRoute</Container>
+      <Button onClick={()=>setIsLoading(false)}>click</Button>
       <Container maxWidth="lg">
         <Grid container spacing={2}>
           <Grid size={{ xs: 6, md: 8 }}>
-            <Item>xs=6 md=8</Item>
+            <BasicCard isLoading={isLoading}/>
+            
           </Grid>
-          <Grid size={{ xs: 6, md: 4 }}>
-            <Item>xs=6 md=4</Item>
           </Grid>
-          <Grid size={{ xs: 6, md: 4 }}>
-            <Item>xs=6 md=4</Item>
-          </Grid>
-          <Grid size={{ xs: 6, md: 8 }}>
-            <Item>xs=6 md=8</Item>
-          </Grid>
-        </Grid>
+
       </Container>
     </>
   );

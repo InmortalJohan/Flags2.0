@@ -9,10 +9,10 @@ import {
   Stack,
   Container,
   Grid,
+  Skeleton,
 } from "@mui/material";
 import { useContext } from "react";
 import { ThemeContext } from "../ThemeContext";
-import LoadingLayout from "../Layouts/LoadingLayout";
 import NotFound from "./NotFound";
 import CountryDetailSkeleton from "../Components/CountryDetailSkeleton";
 
@@ -20,7 +20,7 @@ const Country = () => {
   const { id } = useParams(); // id = landets kod, ex: "SWE"
   const [country, setCountry] = useState(null);
   const [neighbors, setNeighbors] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const { mode } = useContext(ThemeContext);
 
@@ -86,7 +86,7 @@ const Country = () => {
 
   useEffect(() => {
     const fetchCountry = async () => {
-      setLoading(true);
+      setIsLoading(true);
       setError(null);
 
       try {
@@ -98,9 +98,14 @@ const Country = () => {
         setCountry(countryData);
 
         // Defensive: Only fetch borders if it's a non-empty array
-        if (Array.isArray(countryData.borders) && countryData.borders.length > 0) {
+        if (
+          Array.isArray(countryData.borders) &&
+          countryData.borders.length > 0
+        ) {
           const bordersRes = await fetch(
-            `https://restcountries.com/v3.1/alpha?codes=${countryData.borders.join(",")}`
+            `https://restcountries.com/v3.1/alpha?codes=${countryData.borders.join(
+              ","
+            )}`
           );
           if (!bordersRes.ok) {
             setNeighbors([]);
@@ -115,17 +120,13 @@ const Country = () => {
         setError(err.message);
         setCountry(null);
         setNeighbors([]);
-     } finally {
-        setLoading(false);
+      } finally {
+        setIsLoading(false);
       }
     };
 
     fetchCountry();
   }, [id]);
-
-  if (loading) return <CountryDetailSkeleton />;
-  if (error) return <NotFound />;
-  if (!country) return <NotFound />;
 
   return (
     <Container
@@ -160,32 +161,49 @@ const Country = () => {
           flexDirection: { xs: "column", md: "row" },
           justifyContent: { xs: "center", md: "flex-start" },
           alignItems: "center",
-          marginTop: "40px"
+          marginTop: "40px",
         }}
       >
-        <Grid
-          size={{ xs: 10, md: 6 }}
-          sx={{
-            height: { xs: 200, md: 350 },
-            boxShadow: 6,
-            objectFit: "cover",
-            borderRadius: "12px",
-          }}
-          component="img"
-          src={country.flags?.svg}
-          alt={country.name?.common}
-        />
+        {isLoading ? (
+          <Skeleton
+            variant="rectangular"
+            width={{ xs: "300px", md: "550px" }}
+            sx={{
+              height: { xs: "200px", md: "350px "},
+              boxShadow: 6,
+              borderRadius: "12px",
+            }}
+          />
+        ) : (
+          <Grid
+            size={{ xs: 10, md: 6 }}
+            sx={{
+              height: { xs: 200, md: 350 },
+              boxShadow: 6,
+              objectFit: "cover",
+              borderRadius: "12px",
+            }}
+            component="img"
+            src={country.flags?.svg}
+            alt={country.name?.common}
+          />
+        )}
+
         <Grid
           className="infoContainer"
-          size={{xs:10, md:6}}
+          size={{ xs: 10, md: 6 }}
           sx={{
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
           }}
         >
-          <Typography variant="h4" marginBottom={4} paddingLeft="12px" >
-            {country.name.common}
+          <Typography variant="h4" marginBottom={4} paddingLeft="12px">
+            {isLoading ? (
+              <Skeleton variant="text" width="70%" />
+            ) : (
+              country?.name?.common
+            )}
           </Typography>
 
           <Grid
@@ -207,25 +225,41 @@ const Country = () => {
                 <Typography variant="body2">
                   {" "}
                   Region: {"  "}
-                  {country.region}
+                  {isLoading ? (
+                    <Skeleton variant="text" width="60%" />
+                  ) : (
+                    country?.region
+                  )}
                 </Typography>
               </ListItem>
               <ListItem>
                 <Typography variant="body2">
                   Capital:{"  "}
-                  {country.capital?.[0]}
+                  {isLoading ? (
+                    <Skeleton variant="text" width="60%" />
+                  ) : (
+                    country?.capital?.[0]
+                  )}
                 </Typography>
               </ListItem>
               <ListItem>
                 <Typography variant="body2">
                   Population:{"  "}
-                  {country.population.toLocaleString()}
+                  {isLoading ? (
+                    <Skeleton variant="text" width="60%" />
+                  ) : (
+                    `${country?.population?.toLocaleString()}`
+                  )}
                 </Typography>
               </ListItem>
               <ListItem>
                 <Typography>
                   Languages:{"  "}
-                  {Object.values(country.languages || {}).join(", ")}
+                  {isLoading ? (
+                    <Skeleton variant="text" width="60%" />
+                  ) : (
+                    Object.values(country.languages || {}).join(", ")
+                  )}
                 </Typography>
               </ListItem>
             </Grid>
@@ -233,26 +267,34 @@ const Country = () => {
               <ListItem>
                 <Typography variant="body2">
                   Currencies:{"  "}
-                  {
+                  {isLoading ? (
+                    <Skeleton variant="text" width="60%" />
+                  ) : (
                     country.currencies?.[Object.keys(country.currencies)[0]]
-                      .name
-                  }
+                      ?.name
+                  )}
                 </Typography>
               </ListItem>
               <ListItem>
                 <Typography variant="body2">
                   Native name:{"  "}
-                  {
+                  {isLoading ? (
+                    <Skeleton variant="text" width="60%" />
+                  ) : (
                     country.name.nativeName?.[
                       Object.keys(country.name.nativeName)[0]
                     ].common
-                  }
+                  )}
                 </Typography>
               </ListItem>
               <ListItem>
                 <Typography variant="body2">
                   Top Level Domain :{"  "}
-                  {country.tld?.[0]}{" "}
+                  {isLoading ? (
+                    <Skeleton variant="text" width="60%" />
+                  ) : (
+                    country.tld?.[0]
+                  )}{" "}
                 </Typography>
               </ListItem>
             </Grid>
@@ -283,7 +325,13 @@ const Country = () => {
             gap: "4px",
           }}
         >
-          {neighbors.length > 0 ? (
+          {isLoading ? (
+            <>
+              <Skeleton variant="rounded" width={80} height={36} />
+              <Skeleton variant="rounded" width={80} height={36} />
+              <Skeleton variant="rounded" width={80} height={36} />
+            </>
+          ) : neighbors.length > 0 ? (
             neighbors.map((neighbor) => (
               <Button
                 size="medium"
