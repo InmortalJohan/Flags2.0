@@ -128,7 +128,7 @@ export default function SearchCountry() {
         container
         spacing={8}
         sx={{
-          justifyContent:"flex-start",
+          justifyContent:{xs: "center", lg: "flex-start"},
           alignItems: "center",
           paddingLeft: 3,
           paddingRight: 3,

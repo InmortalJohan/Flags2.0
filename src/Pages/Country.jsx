@@ -14,7 +14,7 @@ import {
 import { useContext } from "react";
 import { ThemeContext } from "../ThemeContext";
 import NotFound from "./NotFound";
-import CountryDetailSkeleton from "../Components/CountryDetailSkeleton";
+// import CountryDetailSkeleton from "../Components/CountryDetailSkeleton";
 
 const Country = () => {
   const { id } = useParams(); // id = landets kod, ex: "SWE"
